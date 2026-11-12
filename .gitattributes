@@ -1,0 +1,19 @@
+* text=auto eol=lf
+
+*.c      text eol=lf
+*.h      text eol=lf
+*.md     text eol=lf
+*.yml    text eol=lf
+*.ps1    text eol=crlf
+*.cmd    text eol=crlf
+*.ccxml  text eol=crlf
+
+# Eclipse/CCS metadata must keep its original line endings.
+.ccsproject  -text
+.cproject    -text
+.project     -text
+NOTICE_TI.txt -text
+
+*.png    binary
+*.jpg    binary
+*.pdf    binary

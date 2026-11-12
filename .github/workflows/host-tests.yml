@@ -1,0 +1,30 @@
+name: host-tests
+
+# The firmware itself needs TI CCS, but every piece of logic that is not
+# register access runs on a normal C compiler. This workflow proves that the
+# code still builds and all host-side regression suites pass on every push.
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install pwsh and gcc
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc powershell
+
+      - name: Run host regression suites
+        shell: pwsh
+        run: ./tools/test_host.ps1 -BuildDirectory "$RUNNER_TEMP/hostbuild"
+
+      - name: Summary
+        if: always()
+        run: echo "Host suites cover game rules, calibration, filtering, save/flash port, keys, LCD, TUNE and SPI drivers."

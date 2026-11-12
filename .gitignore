@@ -1,0 +1,29 @@
+# CCS / TI 构建产物
+Debug/
+Release/
+.settings/
+*.out
+*.obj
+*.map
+*.pp
+*.d
+*.zip
+*.exe
+*.pdb
+*.trace
+
+# 主机测试临时输出
+hostbuild*/
+*.o
+test_core.exe
+test_key_driver.exe
+test_accel_driver.exe
+
+# 编辑器与系统
+.vscode/
+.idea/
+*.swp
+*~
+Thumbs.db
+desktop.ini
+.DS_Store
