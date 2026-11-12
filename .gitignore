@@ -15,6 +15,9 @@ Release/
 # 主机测试临时输出
 hostbuild*/
 *.o
+test_core
+test_key_driver
+test_accel_driver
 test_core.exe
 test_key_driver.exe
 test_accel_driver.exe

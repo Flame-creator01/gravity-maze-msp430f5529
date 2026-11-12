@@ -1,5 +1,7 @@
 param([string]$BuildDirectory = '', [string]$Compiler = 'gcc')
 $ErrorActionPreference = 'Stop'
+# Keep the executables portable: Windows needs .exe, Linux/macOS must not have it.
+$taskExt = if ($IsWindows -or $env:OS -eq 'Windows_NT') { '.exe' } else { '' }
 $taskProjectRoot = Split-Path -Parent $PSScriptRoot
 if (-not $BuildDirectory) { $BuildDirectory = Join-Path $env:TEMP 'MSP430_GravityMaze_host_tests' }
 New-Item -ItemType Directory -Path $BuildDirectory -Force | Out-Null
@@ -15,7 +17,7 @@ $taskIncludes = @('include','source/game','source/input','source/drivers','sourc
 $taskArguments = @('-std=c89','-Wall','-Wextra','-Werror','-pedantic','-g')
 foreach ($taskInclude in $taskIncludes) { $taskArguments += '-I' + (Join-Path $taskProjectRoot $taskInclude) }
 foreach ($taskSource in $taskSources) { $taskArguments += Join-Path $taskProjectRoot $taskSource }
-$taskExecutable = Join-Path $BuildDirectory 'test_core.exe'
+$taskExecutable = Join-Path $BuildDirectory ('test_core' + $taskExt)
 $taskArguments += @('-o',$taskExecutable)
 & $Compiler @taskArguments
 if ($LASTEXITCODE -ne 0) { throw 'Host compilation failed.' }
@@ -30,7 +32,7 @@ foreach ($taskInclude in @('tests/stubs','include','source/drivers','source/inpu
 foreach ($taskSource in @('tests/test_key_driver.c','source/drivers/key.c','source/input/key_filter.c')) {
     $taskKeyArguments += Join-Path $taskProjectRoot $taskSource
 }
-$taskKeyExecutable = Join-Path $BuildDirectory 'test_key_driver.exe'
+$taskKeyExecutable = Join-Path $BuildDirectory ('test_key_driver' + $taskExt)
 $taskKeyArguments += @('-o',$taskKeyExecutable)
 & $Compiler @taskKeyArguments
 if ($LASTEXITCODE -ne 0) { throw 'Key driver host compilation failed.' }
@@ -45,7 +47,7 @@ foreach ($taskInclude in @('tests/accel_stubs','include','source/board','source/
 foreach ($taskSource in @('tests/test_accel_driver.c','source/drivers/accel_port.c','source/drivers/accel.c')) {
     $taskAccelArguments += Join-Path $taskProjectRoot $taskSource
 }
-$taskAccelExecutable = Join-Path $BuildDirectory 'test_accel_driver.exe'
+$taskAccelExecutable = Join-Path $BuildDirectory ('test_accel_driver' + $taskExt)
 $taskAccelArguments += @('-o',$taskAccelExecutable)
 & $Compiler @taskAccelArguments
 if ($LASTEXITCODE -ne 0) { throw 'Accelerometer host compilation failed.' }
