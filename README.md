@@ -164,6 +164,11 @@ pwsh tools/test_host.ps1
 - 本项目**原创部分**（游戏逻辑、校准/滤波/方向算法、UI、测试）以 MIT 许可证发布，见 [LICENSE](LICENSE)。
 - 传感器与 LCD 驱动、字库、CCS 元数据改编自 TI MSP-EXP430F5529 User Experience，沿用原 **BSD 三条款** 许可证，见 [NOTICE_TI.txt](NOTICE_TI.txt)。再分发时请保留原版权声明。
 
+## 贡献者
+
+- **Flame-creator01** — 项目发起、硬件调试与实机验证
+- **DSH (DeepSeek Harness)** — 代码实现、自动化测试与文档（AI 助手）
+
 ## 致谢
 
 TI MSP-EXP430F5529 User Experience 提供的 HAL 参考实现与硬件资料（SLAU208、SLAU330、器件数据手册）。
