@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2026 Flame-creator01 & DSH (DeepSeek Harness)
+Copyright (c) 2026 Flame-creator01
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,13 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----------------------------------------------------------------------------
-EXCEPTION: TI-derived material
----------------------------------------------------------------------------
-Parts of this repository are adapted from the Texas Instruments
-"MSP-EXP430F5529 User Experience" package (accelerometer and LCD drivers,
-font data, CCS project metadata and the linker command file). Those parts are
-distributed under TI's BSD 3-Clause license, reproduced in NOTICE_TI.txt, and
-are NOT covered by the MIT license above. Keep the original notices when
-redistributing.
